@@ -18,4 +18,6 @@ app.get("/api/pharmacy/health", (req, res) => {
   });
 });
 
+app.use("/api/medicaments", require("../routes/medicamentRoute"));
+
 module.exports = app;
