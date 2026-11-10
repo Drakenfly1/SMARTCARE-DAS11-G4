@@ -8,10 +8,6 @@ Ce dossier contient les diagrammes de conception et d'architecture du système S
 - Diagramme de cas d'utilisation UML
 - Diagrammes de classes
 - Diagrammes de séquence
-- Diagrammes d'activité
-- Diagrammes de bases de données
-- Diagramme de communication entre les microservices
-- Schéma de l'API Gateway
 
 ## Microservices concernés
 1. Patient Service
