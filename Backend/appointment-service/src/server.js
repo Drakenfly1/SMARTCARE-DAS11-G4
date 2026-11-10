@@ -2,6 +2,9 @@ require('dotenv').config();
 const app = require('./app');
 const connectDB = require('./config/db');
 
+require('./models/Doctor');
+require('./models/Appointment');
+
 const PORT = process.env.PORT || 3002;
 
 connectDB()
