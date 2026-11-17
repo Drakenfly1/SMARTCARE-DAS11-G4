@@ -5,6 +5,7 @@ const categoryRoutes = require("../routes/categoryRoutes");
 const medicationRoutes = require("../routes/medicationRoutes");
 const stockRoutes = require("../routes/stockRoutes");
 const stockMovementRoutes = require("../routes/stockMovementRoutes");
+const dispensationRoutes = require("../routes/dispensationRoutes");
 
 const app = express();
 
@@ -30,5 +31,6 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/medications", medicationRoutes);
 app.use("/api/stocks", stockRoutes);
 app.use("/api/stock-movements", stockMovementRoutes);
+app.use("/api/dispensations", dispensationRoutes);
 
 module.exports = app;

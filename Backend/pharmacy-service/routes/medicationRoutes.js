@@ -9,5 +9,5 @@ router.get("/:id", controller.getMedicationById);
 router.post("/", controller.createMedication);
 router.put("/:id", controller.updateMedication);
 router.delete("/:id", controller.deleteMedication);
-
+router.post("/resolve-references",controller.resolveReferences);
 module.exports = router;

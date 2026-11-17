@@ -2,6 +2,7 @@
 const mongoose = require("mongoose");
 const Medication = require("../models/Medication");
 const Category = require("../models/Category");
+const MedicationForLookup = require("../models/Medication");
 
 // afficher tous les médicaments
 exports.getAllMedications = async (req, res) => {
@@ -137,3 +138,58 @@ exports.deleteMedication = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Rechercher les médicaments par leurs références
+exports.resolveReferences = async (req, res) => {
+  try {
+    const { references } = req.body || {};
+
+    if (
+      !Array.isArray(references) ||
+      references.length === 0 ||
+      references.some(
+        (ref) => typeof ref !== "string" || !ref.trim()
+      )
+    ) {
+      return res.status(400).json({
+        message: "Une liste de références valides est obligatoire"
+      });
+    }
+
+    const normalizedReferences = [
+      ...new Set(references.map((ref) => ref.trim()))
+    ];
+
+    const medications = await MedicationForLookup.find({
+      reference: { $in: normalizedReferences }
+    }).select("_id name reference");
+
+    const results = normalizedReferences.map((reference) => {
+      const matches = medications.filter(
+        (medication) => medication.reference === reference
+      );
+
+      return {
+        reference,
+        found: matches.length === 1,
+        ambiguous: matches.length > 1,
+        medication: matches.length === 1
+          ? matches[0]
+          : null
+      };
+    });
+
+    return res.status(200).json({
+      allFound: results.every((item) => item.found),
+      items: results
+    });
+
+  } catch (error) {
+    console.error("Erreur correspondance :", error.message);
+
+    return res.status(500).json({
+      message: "Erreur lors de la recherche des références"
+    });
+  }
+};
+
