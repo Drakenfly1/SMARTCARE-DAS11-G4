@@ -1,0 +1,5 @@
+
+# Fichiers locaux IntelliJ et Maven
+**/.idea/
+**/target/
+**/*.iml
