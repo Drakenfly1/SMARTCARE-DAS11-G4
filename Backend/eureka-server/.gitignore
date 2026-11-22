@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+@"
+target/
+.idea/
+*.iml
+.env
+"@ | Set-Content "Backend/eureka-server/.gitignore"
