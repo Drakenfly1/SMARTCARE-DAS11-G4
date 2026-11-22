@@ -54,7 +54,7 @@ eureka.instance.prefer-ip-address=true
 Une deuxième instance est lancée sur le port 8095 (`-Dserver.port=8095`).
 Les deux instances partagent la même base MongoDB (`appointment_db`).
 
-![Dashboard Eureka avec 2 instances](eureka-dashboard-2-instances.png)
+![Dashboard Eureka avec 2 instances](screenshots/eureka-dashboard-2-instances.png)
 
 ---
 
@@ -77,28 +77,28 @@ info.app.team=TuniTech
 
 Statut UP, avec le composant `mongo` :
 
-![Health UP](actuator-health-up.png)
+![Health UP](screenshots/actuator-health-up.png)
 
 ## `/actuator/info`
 
-![Info](actuator-info.png)
+![Info](screenshots/actuator-info.png)
 
 ## `/actuator/metrics`
 
-![Metrics](actuator-metrics.png)
+![Metrics](screenshots/actuator-metrics.png)
 
 ## Panne de la base de données
 
 MongoDB a été arrêté. Le service passe **DOWN** (le composant `mongo` signale une erreur
 de connexion) et Eureka reçoit ce statut grâce à `eureka.client.healthcheck.enabled=true`.
 
-![Health DOWN](actuator-health-down.png)
+![Health DOWN](screenshots/actuator-health-down.png)
 
-![Dashboard Eureka : DOWN](eureka-dashboard-down.png)
+![Dashboard Eureka : DOWN](screenshots/eureka-dashboard-down.png)
 
 Après le redémarrage de MongoDB, le service repasse **UP** :
 
-![Health après récupération](actuator-health-recovered.png)
+![Health après récupération](screenshots/actuator-health-recovered.png)
 
 ## Métriques `http.server.requests`
 
@@ -108,9 +108,9 @@ Après le redémarrage de MongoDB, le service repasse **UP** :
 | TOTAL_TIME | 30,29 s | 0,387 s |
 | MAX | 0,0 s (fenêtre déjà réinitialisée) | 0,1665 s |
 
-![Métriques http.server.requests](metrics-http-requests.png)
+![Métriques http.server.requests](screenshots/metrics-http-requests.png)
 
-![Métriques status:200](metrics-http-requests-200.png)
+![Métriques status:200](screenshots/metrics-http-requests-200.png)
 
 **Réponse à la question de l'atelier :** le service a traité **8 requêtes** au total.
 La requête réussie la plus lente a duré environ **0,17 s** (MAX). Le filtre `status:200`
